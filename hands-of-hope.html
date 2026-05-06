@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hands of Hope Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #C0152A;
+    --crimson-dark: #8B0D1E;
+    --crimson-light: #E8192F;
+    --black: #0A0A0A;
+    --charcoal: #1A1A1A;
+    --dark-gray: #242424;
+    --mid-gray: #3A3A3A;
+    --cream: #F5EFE6;
+    --warm-white: #FAF7F2;
+    --gold: #C9A84C;
+    --text-muted: #999;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(192,21,42,0.2);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--crimson); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); text-decoration: none; transition: color .25s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-cta {
+    background: var(--crimson);
+    color: #fff; font-size: 0.78rem; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 500;
+    padding: 0.65rem 1.6rem; text-decoration: none;
+    transition: background .25s;
+  }
+  .nav-cta:hover { background: var(--crimson-light); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(192,21,42,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(192,21,42,0.10) 0%, transparent 60%),
+      var(--black);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(192,21,42,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192,21,42,0.06) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at 60% 50%, black 30%, transparent 75%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 4rem;
+    max-width: 900px;
+    animation: heroIn 1s cubic-bezier(.22,1,.36,1) both;
+  }
+  @keyframes heroIn {
+    from { opacity:0; transform: translateY(40px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--crimson-light); font-weight: 500; margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--crimson);
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 12vw, 11rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+  .hero-title em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--crimson-light);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 1.05rem; line-height: 1.7; color: rgba(245,239,230,0.65);
+    max-width: 520px; margin: 2rem 0 3rem;
+  }
+  .hero-actions { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--crimson); color: #fff;
+    padding: 1rem 2.4rem; text-decoration: none;
+    font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+    transition: all .25s; display: inline-block;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.1);
+    transform: translateX(-100%); transition: transform .3s;
+  }
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-ghost {
+    border: 1px solid rgba(245,239,230,0.3); color: var(--cream);
+    padding: 1rem 2.4rem; text-decoration: none;
+    font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+    transition: all .25s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--cream); }
+  .hero-stats {
+    position: absolute; right: 4rem; bottom: 4rem;
+    display: flex; flex-direction: column; gap: 2rem; z-index: 2;
+    animation: heroIn 1s .3s cubic-bezier(.22,1,.36,1) both;
+  }
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem; line-height: 1;
+    color: var(--cream); letter-spacing: 0.04em;
+  }
+  .stat-num span { color: var(--crimson-light); }
+  .stat-label {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-top: 0.2rem;
+  }
+  .hero-divider {
+    position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
+    width: 1px; height: 120px; background: rgba(192,21,42,0.3);
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--crimson-light); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before {
+    content:''; width: 28px; height: 1px; background: var(--crimson);
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: 1; letter-spacing: 0.03em;
+    color: var(--cream);
+  }
+  .section-title em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; color: var(--crimson-light);
+  }
+
+  /* ── PROGRAMS ── */
+  #programs { background: var(--charcoal); }
+  .programs-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 4rem; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .programs-desc {
+    max-width: 380px; font-size: 0.95rem; line-height: 1.75;
+    color: rgba(245,239,230,0.6);
+  }
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(192,21,42,0.15);
+  }
+  .program-card {
+    background: var(--charcoal);
+    padding: 2.8rem 2.4rem;
+    transition: background .3s;
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .program-card::before {
+    content:''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--crimson);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .4s cubic-bezier(.22,1,.36,1);
+  }
+  .program-card:hover::before { transform: scaleX(1); }
+  .program-card:hover { background: var(--dark-gray); }
+  .program-icon {
+    font-size: 2.4rem; margin-bottom: 1.6rem; display: block;
+    filter: grayscale(1) brightness(0.7);
+    transition: filter .3s;
+  }
+  .program-card:hover .program-icon { filter: none; }
+  .program-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem; letter-spacing: 0.2em;
+    color: var(--crimson); margin-bottom: 0.6rem;
+  }
+  .program-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--cream);
+    margin-bottom: 1rem;
+  }
+  .program-text {
+    font-size: 0.88rem; line-height: 1.75;
+    color: rgba(245,239,230,0.55);
+  }
+
+  /* ── TEAM ── */
+  #team { background: var(--black); }
+  .team-header { margin-bottom: 4rem; }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .team-card {
+    position: relative; overflow: hidden;
+    background: var(--dark-gray);
+    transition: transform .3s;
+  }
+  .team-card:hover { transform: translateY(-6px); }
+  .team-avatar {
+    width: 100%; aspect-ratio: 3/4;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    background: var(--mid-gray);
+  }
+  .avatar-initials {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem; letter-spacing: 0.05em;
+    color: rgba(192,21,42,0.5);
+    position: relative; z-index: 1;
+    transition: color .3s;
+  }
+  .team-card:hover .avatar-initials { color: var(--crimson); }
+  .avatar-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 70%, rgba(192,21,42,0.15) 0%, transparent 70%);
+  }
+  .team-info {
+    padding: 1.4rem 1.6rem;
+    border-top: 1px solid rgba(192,21,42,0.2);
+  }
+  .team-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+  .team-role {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--crimson-light);
+  }
+
+  /* ── DONATE ── */
+  #donate {
+    background: var(--charcoal);
+    position: relative; overflow: hidden;
+  }
+  .donate-bg-text {
+    position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 18vw, 18rem);
+    color: rgba(192,21,42,0.05);
+    letter-spacing: 0.05em;
+    user-select: none; pointer-events: none; white-space: nowrap;
+  }
+  .donate-inner {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .donate-left {}
+  .donate-intro {
+    font-size: 1rem; line-height: 1.8;
+    color: rgba(245,239,230,0.6); margin-top: 2rem; max-width: 420px;
+  }
+  .donate-right {
+    background: var(--dark-gray);
+    padding: 3rem;
+    border: 1px solid rgba(192,21,42,0.2);
+    position: relative;
+  }
+  .donate-right::before {
+    content:''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--crimson), var(--crimson-dark));
+  }
+  .amount-label {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 1rem;
+  }
+  .amount-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .amount-btn {
+    border: 1px solid rgba(245,239,230,0.15);
+    background: transparent; color: var(--cream);
+    padding: 0.9rem; text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: 0.05em;
+    cursor: pointer; transition: all .2s;
+  }
+  .amount-btn:hover, .amount-btn.active {
+    background: var(--crimson); border-color: var(--crimson); color: #fff;
+  }
+  .custom-amount {
+    width: 100%; background: transparent;
+    border: 1px solid rgba(245,239,230,0.15);
+    color: var(--cream); padding: 0.9rem 1rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    outline: none; margin-bottom: 1.5rem;
+    transition: border-color .2s;
+  }
+  .custom-amount:focus { border-color: var(--crimson); }
+  .custom-amount::placeholder { color: var(--text-muted); }
+  .donate-submit {
+    width: 100%; background: var(--crimson); color: #fff;
+    border: none; padding: 1.1rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 500; cursor: pointer; transition: background .25s;
+  }
+  .donate-submit:hover { background: var(--crimson-light); }
+  .donate-note {
+    font-size: 0.7rem; color: var(--text-muted);
+    text-align: center; margin-top: 1rem; letter-spacing: 0.05em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(192,21,42,0.2);
+    padding: 3rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: 0.12em; color: var(--cream);
+  }
+  .footer-logo span { color: var(--crimson); }
+  .footer-copy {
+    font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.08em;
+  }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted); text-decoration: none; transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+
+  @media (max-width: 1024px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 2rem; }
+    .hero-content { padding: 0 2rem; }
+    .hero-stats { right: 2rem; bottom: 2.5rem; }
+    .programs-grid { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .donate-inner { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 2.5rem 2rem; }
+  }
+  @media (max-width: 600px) {
+    .hero-title { font-size: 4rem; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Hands<span>◆</span>Hope</a>
+  <ul class="nav-links">
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#donate">Donate</a></li>
+  </ul>
+  <a href="#donate" class="nav-cta">Give Now</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Est. 2012 · Bringing hope to children's homes</p>
+    <h1 class="hero-title">
+      Hands<br>
+      <em>of Hope</em><br>
+      Foundation
+    </h1>
+    <p class="hero-sub">We visit children's homes to bring love, laughter, and lasting support — because every child deserves to feel seen, valued, and never alone.</p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn-primary">Support a Child</a>
+      <a href="#programs" class="btn-ghost">How We Help</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">120<span>+</span></div>
+      <div class="stat-label">Homes Visited</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">8<span>K+</span></div>
+      <div class="stat-label">Children Reached</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">94<span>%</span></div>
+      <div class="stat-label">Funds to Children</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="programs-header reveal">
+    <div>
+      <p class="section-label">How We Show Up</p>
+      <h2 class="section-title">Our <em>Programs</em></h2>
+    </div>
+    <p class="programs-desc">Every visit is intentional. We show up with resources, energy, and genuine love — creating moments that remind children they are not forgotten.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card reveal">
+      <span class="program-icon">🏠</span>
+      <div class="program-num">01</div>
+      <h3 class="program-name">Home Visits</h3>
+      <p class="program-text">Our teams make regular, meaningful visits to children's homes — bringing gifts, activities, and most importantly, time and attention every child deserves.</p>
+    </div>
+    <div class="program-card reveal reveal-delay-1">
+      <span class="program-icon">🍽️</span>
+      <div class="program-num">02</div>
+      <h3 class="program-name">Meals & Nutrition</h3>
+      <p class="program-text">We supply nutritious meals and food packages during each visit, ensuring children in homes are well-fed and healthy throughout the year.</p>
+    </div>
+    <div class="program-card reveal reveal-delay-2">
+      <span class="program-icon">📚</span>
+      <div class="program-num">03</div>
+      <h3 class="program-name">Learning Support</h3>
+      <p class="program-text">Tutoring, books, school supplies, and educational activities that spark curiosity and give children the tools to thrive academically.</p>
+    </div>
+    <div class="program-card reveal">
+      <span class="program-icon">🎉</span>
+      <div class="program-num">04</div>
+      <h3 class="program-name">Celebrations & Joy</h3>
+      <p class="program-text">Birthdays, holidays, and special events celebrated with children in homes — because every child deserves to feel special and celebrated.</p>
+    </div>
+    <div class="program-card reveal reveal-delay-1">
+      <span class="program-icon">🧸</span>
+      <div class="program-num">05</div>
+      <h3 class="program-name">Gifts & Essentials</h3>
+      <p class="program-text">Clothing, toiletries, toys, and everyday essentials donated directly to children's homes on each visit, meeting real, immediate needs.</p>
+    </div>
+    <div class="program-card reveal reveal-delay-2">
+      <span class="program-icon">💛</span>
+      <div class="program-num">06</div>
+      <h3 class="program-name">Mentorship & Love</h3>
+      <p class="program-text">Consistent, caring relationships between our volunteers and the children — the kind of steady presence that builds confidence and belonging.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="team-header">
+    <p class="section-label reveal">The People Behind the Mission</p>
+    <h2 class="section-title reveal">Meet Our <em>Team</em></h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">
+        <div class="avatar-bg"></div>
+        <div class="avatar-initials">MK</div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Margaret Kelso</div>
+        <div class="team-role">Executive Director</div>
+      </div>
+    </div>
+    <div class="team-card reveal reveal-delay-1">
+      <div class="team-avatar">
+        <div class="avatar-bg"></div>
+        <div class="avatar-initials">JO</div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">James Okafor</div>
+        <div class="team-role">Director of Programs</div>
+      </div>
+    </div>
+    <div class="team-card reveal reveal-delay-2">
+      <div class="team-avatar">
+        <div class="avatar-bg"></div>
+        <div class="avatar-initials">SR</div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Sofia Reyes</div>
+        <div class="team-role">Head of Outreach</div>
+      </div>
+    </div>
+    <div class="team-card reveal reveal-delay-3">
+      <div class="team-avatar">
+        <div class="avatar-bg"></div>
+        <div class="avatar-initials">DL</div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">David Liang</div>
+        <div class="team-role">Chief Finance Officer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section id="donate">
+  <div class="donate-bg-text">GIVE</div>
+  <div class="donate-inner">
+    <div class="donate-left">
+      <p class="section-label reveal">Fund a Visit</p>
+      <h2 class="section-title reveal">Help Us <em>Show Up</em></h2>
+      <p class="donate-intro reveal">Every donation funds a visit. Your gift puts our team inside a children's home with meals, supplies, and love — giving a child a day they'll never forget. No amount is too small to make a difference.</p>
+    </div>
+    <div class="donate-right reveal">
+      <p class="amount-label">Select an amount</p>
+      <div class="amount-grid">
+        <button class="amount-btn" onclick="selectAmount(this)">$25</button>
+        <button class="amount-btn active" onclick="selectAmount(this)">$50</button>
+        <button class="amount-btn" onclick="selectAmount(this)">$100</button>
+        <button class="amount-btn" onclick="selectAmount(this)">$250</button>
+        <button class="amount-btn" onclick="selectAmount(this)">$500</button>
+        <button class="amount-btn" onclick="selectAmount(this)">$1K</button>
+      </div>
+      <input class="custom-amount" type="text" placeholder="Or enter a custom amount ($)" />
+      <button class="donate-submit">Donate Now →</button>
+      <p class="donate-note">🔒 Secure &amp; encrypted · 100% tax deductible · No fees</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hands<span>◆</span>Hope Foundation</div>
+  <p class="footer-copy">© 2026 Hands of Hope Foundation. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Contact</a>
+    <a href="#">Annual Report</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  // Donate amount selection
+  function selectAmount(btn) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector('.custom-amount').value = '';
+  }
+</script>
+</body>
+</html>
